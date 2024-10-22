@@ -16,6 +16,13 @@ mongoose.connect(dbURI)
   .then(() => console.log("MongoDB connected"))
   .catch(err => console.error("MongoDB connection error:", err));
 
+mongoose.connect(process.env.MONGO_URI, {
+  useNewUrlParser: true,
+  useUnifiedTopology: true,
+  serverSelectionTimeoutMS: 30000 // Increase timeout to 30 seconds
+});
+
+
 // User Schema
 const userSchema = new mongoose.Schema({
   name: { type: String, required: true },
