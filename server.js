@@ -16,12 +16,6 @@ mongoose.connect(dbURI)
   .then(() => console.log("MongoDB connected"))
   .catch(err => console.error("MongoDB connection error:", err));
 
-mongoose.connect(process.env.MONGO_URI, {
-  useNewUrlParser: true,
-  useUnifiedTopology: true,
-  serverSelectionTimeoutMS: 30000 // Increase timeout to 30 seconds
-});
-
 
 // User Schema
 const userSchema = new mongoose.Schema({
@@ -371,6 +365,4 @@ app.get('/users', async (req, res) => {
 
 // Start the server
 const PORT = process.env.PORT || 5000;
-app.listen(PORT, () => {
-  console.log(`Server running on port ${PORT}`);
-});
+app.listen(PORT, '0.0.0.0', () => console.log(Server running on http://0.0.0.0:${PORT}));
